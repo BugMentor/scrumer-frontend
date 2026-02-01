@@ -18,6 +18,15 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
-      }
+      },
+      optimizeDeps: {
+        include: ['@apollo/client']
+      },
+      test: {
+        globals: true,
+        environment: 'jsdom',
+        setupFiles: './setupTests.ts',
+        exclude: ['**/node_modules/**', '**/*.spec.ts'],
+      },
     };
 });
