@@ -39,7 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
   return (
     <div className="w-64 bg-slate-950 text-white flex flex-col h-full overflow-hidden border-r border-slate-800 shrink-0">
       <div className="p-8 flex items-center space-x-3 cursor-pointer" onClick={() => setActiveTab('board')}>
-                  <img src="/assets/img/scrumer-full-logo.png" alt="Scrumer Logo" className="h-10" />      </div>
+                  <img src="/assets/img/scrumer-full-logo.png" alt="Scrumer Logo" className="h-[5.5rem]" />      </div>
 
       <nav className="flex-1 px-4 overflow-y-auto custom-scrollbar pb-8">
         {groups.map((group) => (
