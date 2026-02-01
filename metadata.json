@@ -1,0 +1,5 @@
+{
+  "name": "Scrumer - AI-Powered Agile Management",
+  "description": "A high-performance Jira clone featuring a Kanban board, backlog management, and integrated Gemini AI for user story generation and sprint planning.",
+  "requestFramePermissions": []
+}
