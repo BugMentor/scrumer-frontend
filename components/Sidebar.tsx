@@ -39,13 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
   return (
     <div className="w-64 bg-slate-950 text-white flex flex-col h-full overflow-hidden border-r border-slate-800 shrink-0">
       <div className="p-8 flex items-center space-x-3 cursor-pointer" onClick={() => setActiveTab('board')}>
-        <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
-          <i className="fa-solid fa-bolt-lightning text-white text-xl"></i>
-        </div>
-        <span className="text-2xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
-          SCRUMER
-        </span>
-      </div>
+                  <img src="/assets/img/scrumer-full-logo.png" alt="Scrumer Logo" className="h-10" />      </div>
 
       <nav className="flex-1 px-4 overflow-y-auto custom-scrollbar pb-8">
         {groups.map((group) => (
