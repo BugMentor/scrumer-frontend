@@ -115,7 +115,7 @@ function Get-NextBranchNumber {
     $highestBranch = Get-HighestNumberFromBranches
 
     # Get highest number from ALL specs (not just matching short name)
-    $highestSpec = Get-HighestNumberFromSpecs -SpecsDir $SpecsDir
+    $highestSpec = Get-HighestNumberFromSpecs -SpecsDir $specsDir
 
     # Take the maximum of both
     $maxNum = [Math]::Max($highestBranch, $highestSpec)
