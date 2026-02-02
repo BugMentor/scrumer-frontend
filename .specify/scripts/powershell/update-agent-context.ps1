@@ -154,7 +154,7 @@ function Parse-PlanData {
     if ($NEW_FRAMEWORK) { Write-Info "Found framework: $NEW_FRAMEWORK" }
     if ($NEW_DB -and $NEW_DB -ne 'N/A') { Write-Info "Found database: $NEW_DB" }
     if ($NEW_PROJECT_TYPE) { Write-Info "Found project type: $NEW_PROJECT_TYPE" }
-    return $true
+    return true
 }
 
 function Format-TechnologyStack {
@@ -261,7 +261,7 @@ function New-AgentFile {
     if (-not (Test-Path $parent)) { New-Item -ItemType Directory -Path $parent | Out-Null }
     Set-Content -LiteralPath $TargetFile -Value $content -NoNewline -Encoding utf8
     Remove-Item $temp -Force
-    return $true
+    return true
 }
 
 function Update-ExistingAgentFile {
@@ -293,18 +293,18 @@ function Update-ExistingAgentFile {
 
     $lines = Get-Content -LiteralPath $TargetFile -Encoding utf8
     $output = New-Object System.Collections.Generic.List[string]
-    $inTech = $false; $inChanges = $false; $techAdded = $false; $changeAdded = $false; $existingChanges = 0
+    $inTech = false; $inChanges = false; $techAdded = false; $changeAdded = false; $existingChanges = 0
 
     for ($i=0; $i -lt $lines.Count; $i++) {
         $line = $lines[$i]
         if ($line -eq '## Active Technologies') {
             $output.Add($line)
-            $inTech = $true
+            $inTech = true
             continue
         }
         if ($inTech -and $line -match '^##\s') {
             if (-not $techAdded -and $newTechEntries.Count -gt 0) { $newTechEntries | ForEach-Object { $output.Add($_) }; $techAdded = true }
-            $output.Add($line); $inTech = $false; continue
+            $output.Add($line); $inTech = false; continue
         }
         if ($inTech -and [string]::IsNullOrWhiteSpace($line)) {
             if (-not $techAdded -and $newTechEntries.Count -gt 0) { $newTechEntries | ForEach-Object { $output.Add($_) }; $techAdded = true }
@@ -334,7 +334,7 @@ function Update-ExistingAgentFile {
     }
 
     Set-Content -LiteralPath $TargetFile -Value ($output -join [Environment]::NewLine) -Encoding utf8
-    return $true
+    return true
 }
 
 function Update-AgentFile {
@@ -362,7 +362,7 @@ function Update-AgentFile {
             return $false
         }
     }
-    return $true
+    return true
 }
 
 function Update-SpecificAgent {
@@ -393,9 +393,9 @@ function Update-SpecificAgent {
 }
 
 function Update-AllExistingAgents {
-    $found = $false
-    $ok = $true
-    if (Test-Path $CLAUDE_FILE)   { if (-not (Update-AgentFile -TargetFile $CLAUDE_FILE   -AgentName 'Claude Code')) { $ok = $false }; $found = $true }
+    $found = false
+    $ok = true
+    if (Test-Path $CLAUDE_FILE)   { if (-not (Update-AgentFile -TargetFile $CLAUDE_FILE   -AgentName 'Claude Code')) { $ok = false }; $found = true }
     if (Test-Path $GEMINI_FILE)   { if (-not (Update-AgentFile -TargetFile $GEMINI_FILE   -AgentName 'Gemini CLI')) { $ok = false }; $found = true }
     if (Test-Path $COPILOT_FILE)  { if (-not (Update-AgentFile -TargetFile $COPILOT_FILE  -AgentName 'GitHub Copilot')) { $ok = false }; $found = true }
     if (Test-Path $CURSOR_FILE)   { if (-not (Update-AgentFile -TargetFile $CURSOR_FILE   -AgentName 'Cursor IDE')) { $ok = false }; $found = true }
