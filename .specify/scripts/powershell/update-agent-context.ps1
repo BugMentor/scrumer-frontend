@@ -154,7 +154,23 @@ function Parse-PlanData {
     if ($NEW_FRAMEWORK) { Write-Info "Found framework: $NEW_FRAMEWORK" }
     if ($NEW_DB -and $NEW_DB -ne 'N/A') { Write-Info "Found database: $NEW_DB" }
     if ($NEW_PROJECT_TYPE) { Write-Info "Found project type: $NEW_PROJECT_TYPE" }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     return true
+=======
+    return $true
+>>>>>>> Stashed changes
+=======
+    return $true
+>>>>>>> Stashed changes
+=======
+    return $true
+>>>>>>> Stashed changes
+=======
+    return $true
+>>>>>>> Stashed changes
 }
 
 function Format-TechnologyStack {
@@ -209,7 +225,23 @@ function New-AgentFile {
         [Parameter(Mandatory=$true)]
         [datetime]$Date
     )
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     if (-not (Test-Path $TEMPLATE_FILE)) { Write-Err "Template not found at $TEMPLATE_FILE"; return false }
+=======
+    if (-not (Test-Path $TEMPLATE_FILE)) { Write-Err "Template not found at $TEMPLATE_FILE"; return $false }
+>>>>>>> Stashed changes
+=======
+    if (-not (Test-Path $TEMPLATE_FILE)) { Write-Err "Template not found at $TEMPLATE_FILE"; return $false }
+>>>>>>> Stashed changes
+=======
+    if (-not (Test-Path $TEMPLATE_FILE)) { Write-Err "Template not found at $TEMPLATE_FILE"; return $false }
+>>>>>>> Stashed changes
+=======
+    if (-not (Test-Path $TEMPLATE_FILE)) { Write-Err "Template not found at $TEMPLATE_FILE"; return $false }
+>>>>>>> Stashed changes
     $temp = New-TemporaryFile
     Copy-Item -LiteralPath $TEMPLATE_FILE -Destination $temp -Force
 
@@ -261,7 +293,23 @@ function New-AgentFile {
     if (-not (Test-Path $parent)) { New-Item -ItemType Directory -Path $parent | Out-Null }
     Set-Content -LiteralPath $TargetFile -Value $content -NoNewline -Encoding utf8
     Remove-Item $temp -Force
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     return true
+=======
+    return $true
+>>>>>>> Stashed changes
+=======
+    return $true
+>>>>>>> Stashed changes
+=======
+    return $true
+>>>>>>> Stashed changes
+=======
+    return $true
+>>>>>>> Stashed changes
 }
 
 function Update-ExistingAgentFile {
@@ -293,12 +341,32 @@ function Update-ExistingAgentFile {
 
     $lines = Get-Content -LiteralPath $TargetFile -Encoding utf8
     $output = New-Object System.Collections.Generic.List[string]
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     $inTech = false; $inChanges = false; $techAdded = false; $changeAdded = false; $existingChanges = 0
+=======
+    $inTech = $false; $inChanges = $false; $techAdded = $false; $changeAdded = $false; $existingChanges = 0
+>>>>>>> Stashed changes
+=======
+    $inTech = $false; $inChanges = $false; $techAdded = $false; $changeAdded = $false; $existingChanges = 0
+>>>>>>> Stashed changes
+=======
+    $inTech = $false; $inChanges = $false; $techAdded = $false; $changeAdded = $false; $existingChanges = 0
+>>>>>>> Stashed changes
+=======
+    $inTech = $false; $inChanges = $false; $techAdded = $false; $changeAdded = $false; $existingChanges = 0
+>>>>>>> Stashed changes
 
     for ($i=0; $i -lt $lines.Count; $i++) {
         $line = $lines[$i]
         if ($line -eq '## Active Technologies') {
             $output.Add($line)
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
             $inTech = true
             continue
         }
@@ -308,15 +376,67 @@ function Update-ExistingAgentFile {
         }
         if ($inTech -and [string]::IsNullOrWhiteSpace($line)) {
             if (-not $techAdded -and $newTechEntries.Count -gt 0) { $newTechEntries | ForEach-Object { $output.Add($_) }; $techAdded = true }
+=======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+            $inTech = $true
+            continue
+        }
+        if ($inTech -and $line -match '^##\s') {
+            if (-not $techAdded -and $newTechEntries.Count -gt 0) { $newTechEntries | ForEach-Object { $output.Add($_) }; $techAdded = $true }
+            $output.Add($line); $inTech = $false; continue
+        }
+        if ($inTech -and [string]::IsNullOrWhiteSpace($line)) {
+            if (-not $techAdded -and $newTechEntries.Count -gt 0) { $newTechEntries | ForEach-Object { $output.Add($_) }; $techAdded = $true }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
             $output.Add($line); continue
         }
         if ($line -eq '## Recent Changes') {
             $output.Add($line)
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
             if ($newChangeEntry) { $output.Add($newChangeEntry); $changeAdded = true }
             $inChanges = true
             continue
         }
         if ($inChanges -and $line -match '^##\s') { $output.Add($line); $inChanges = false; continue }
+=======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+            if ($newChangeEntry) { $output.Add($newChangeEntry); $changeAdded = $true }
+            $inChanges = $true
+            continue
+        }
+        if ($inChanges -and $line -match '^##\s') { $output.Add($line); $inChanges = $false; continue }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         if ($inChanges -and $line -match '^- ') {
             if ($existingChanges -lt 2) { $output.Add($line); $existingChanges++ }
             continue
@@ -334,7 +454,23 @@ function Update-ExistingAgentFile {
     }
 
     Set-Content -LiteralPath $TargetFile -Value ($output -join [Environment]::NewLine) -Encoding utf8
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     return true
+=======
+    return $true
+>>>>>>> Stashed changes
+=======
+    return $true
+>>>>>>> Stashed changes
+=======
+    return $true
+>>>>>>> Stashed changes
+=======
+    return $true
+>>>>>>> Stashed changes
 }
 
 function Update-AgentFile {
@@ -362,7 +498,23 @@ function Update-AgentFile {
             return $false
         }
     }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     return true
+=======
+    return $true
+>>>>>>> Stashed changes
+=======
+    return $true
+>>>>>>> Stashed changes
+=======
+    return $true
+>>>>>>> Stashed changes
+=======
+    return $true
+>>>>>>> Stashed changes
 }
 
 function Update-SpecificAgent {
@@ -393,6 +545,10 @@ function Update-SpecificAgent {
 }
 
 function Update-AllExistingAgents {
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     $found = false
     $ok = true
     if (Test-Path $CLAUDE_FILE)   { if (-not (Update-AgentFile -TargetFile $CLAUDE_FILE   -AgentName 'Claude Code')) { $ok = false }; $found = true }
@@ -413,6 +569,43 @@ function Update-AllExistingAgents {
     if (-not $found) {
         Write-Info 'No existing agent files found, creating default Claude file...'
         if (-not (Update-AgentFile -TargetFile $CLAUDE_FILE -AgentName 'Claude Code')) { $ok = false }
+=======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+    $found = $false
+    $ok = $true
+    if (Test-Path $CLAUDE_FILE)   { if (-not (Update-AgentFile -TargetFile $CLAUDE_FILE   -AgentName 'Claude Code')) { $ok = $false }; $found = $true }
+    if (Test-Path $GEMINI_FILE)   { if (-not (Update-AgentFile -TargetFile $GEMINI_FILE   -AgentName 'Gemini CLI')) { $ok = $false }; $found = $true }
+    if (Test-Path $COPILOT_FILE)  { if (-not (Update-AgentFile -TargetFile $COPILOT_FILE  -AgentName 'GitHub Copilot')) { $ok = $false }; $found = $true }
+    if (Test-Path $CURSOR_FILE)   { if (-not (Update-AgentFile -TargetFile $CURSOR_FILE   -AgentName 'Cursor IDE')) { $ok = $false }; $found = $true }
+    if (Test-Path $QWEN_FILE)     { if (-not (Update-AgentFile -TargetFile $QWEN_FILE     -AgentName 'Qwen Code')) { $ok = $false }; $found = $true }
+    if (Test-Path $AGENTS_FILE)   { if (-not (Update-AgentFile -TargetFile $AGENTS_FILE   -AgentName 'Codex/opencode')) { $ok = $false }; $found = $true }
+    if (Test-Path $WINDSURF_FILE) { if (-not (Update-AgentFile -TargetFile $WINDSURF_FILE -AgentName 'Windsurf')) { $ok = $false }; $found = $true }
+    if (Test-Path $KILOCODE_FILE) { if (-not (Update-AgentFile -TargetFile $KILOCODE_FILE -AgentName 'Kilo Code')) { $ok = $false }; $found = $true }
+    if (Test-Path $AUGGIE_FILE)   { if (-not (Update-AgentFile -TargetFile $AUGGIE_FILE   -AgentName 'Auggie CLI')) { $ok = $false }; $found = $true }
+    if (Test-Path $ROO_FILE)      { if (-not (Update-AgentFile -TargetFile $ROO_FILE      -AgentName 'Roo Code')) { $ok = $false }; $found = $true }
+    if (Test-Path $CODEBUDDY_FILE) { if (-not (Update-AgentFile -TargetFile $CODEBUDDY_FILE -AgentName 'CodeBuddy CLI')) { $ok = $false }; $found = $true }
+    if (Test-Path $QODER_FILE)    { if (-not (Update-AgentFile -TargetFile $QODER_FILE    -AgentName 'Qoder CLI')) { $ok = $false }; $found = $true }
+    if (Test-Path $SHAI_FILE)     { if (-not (Update-AgentFile -TargetFile $SHAI_FILE     -AgentName 'SHAI')) { $ok = $false }; $found = $true }
+    if (Test-Path $Q_FILE)        { if (-not (Update-AgentFile -TargetFile $Q_FILE        -AgentName 'Amazon Q Developer CLI')) { $ok = $false }; $found = $true }
+    if (Test-Path $BOB_FILE)      { if (-not (Update-AgentFile -TargetFile $BOB_FILE      -AgentName 'IBM Bob')) { $ok = $false }; $found = $true }
+    if (-not $found) {
+        Write-Info 'No existing agent files found, creating default Claude file...'
+        if (-not (Update-AgentFile -TargetFile $CLAUDE_FILE -AgentName 'Claude Code')) { $ok = $false }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     }
     return $ok
 }
@@ -431,6 +624,10 @@ function Main {
     Validate-Environment
     Write-Info "=== Updating agent context files for feature $CURRENT_BRANCH ==="
     if (-not (Parse-PlanData -PlanFile $NEW_PLAN)) { Write-Err 'Failed to parse plan data'; exit 1 }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     $success = true
     if ($AgentType) {
         Write-Info "Updating specific agent: $AgentType"
@@ -439,6 +636,31 @@ function Main {
     else {
         Write-Info 'No agent specified, updating all existing agent files...'
         if (-not (Update-AllExistingAgents)) { $success = false }
+=======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+    $success = $true
+    if ($AgentType) {
+        Write-Info "Updating specific agent: $AgentType"
+        if (-not (Update-SpecificAgent -Type $AgentType)) { $success = $false }
+    }
+    else {
+        Write-Info 'No agent specified, updating all existing agent files...'
+        if (-not (Update-AllExistingAgents)) { $success = $false }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     }
     Print-Summary
     if ($success) { Write-Success 'Agent context update completed successfully'; exit 0 } else { Write-Err 'Agent context update completed with errors'; exit 1 }

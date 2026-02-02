@@ -35,7 +35,23 @@
 
 ---
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <h3>User Story 2 - [Brief Title] (Priority: P2)</h3>
+=======
+### User Story 2 - [Brief Title] (Priority: P2)
+>>>>>>> Stashed changes
+=======
+### User Story 2 - [Brief Title] (Priority: P2)
+>>>>>>> Stashed changes
+=======
+### User Story 2 - [Brief Title] (Priority: P2)
+>>>>>>> Stashed changes
+=======
+### User Story 2 - [Brief Title] (Priority: P2)
+>>>>>>> Stashed changes
 
 [Describe this user journey in plain language]
 
@@ -49,7 +65,23 @@
 
 ---
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <h3>User Story 3 - [Brief Title] (Priority: P3)</h3>
+=======
+### User Story 3 - [Brief Title] (Priority: P3)
+>>>>>>> Stashed changes
+=======
+### User Story 3 - [Brief Title] (Priority: P3)
+>>>>>>> Stashed changes
+=======
+### User Story 3 - [Brief Title] (Priority: P3)
+>>>>>>> Stashed changes
+=======
+### User Story 3 - [Brief Title] (Priority: P3)
+>>>>>>> Stashed changes
 
 [Describe this user journey in plain language]
 
@@ -65,7 +97,23 @@
 
 [Add more user stories as needed, each with an assigned priority]
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <h3>Edge Cases</h3>
+=======
+### Edge Cases
+>>>>>>> Stashed changes
+=======
+### Edge Cases
+>>>>>>> Stashed changes
+=======
+### Edge Cases
+>>>>>>> Stashed changes
+=======
+### Edge Cases
+>>>>>>> Stashed changes
 
 <!--
   ACTION REQUIRED: The content in this section represents placeholders.
@@ -75,14 +123,46 @@
 - What happens when [boundary condition]?
 - How does system handle [error scenario]?
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <h2>Requirements *(mandatory)*</h2>
+=======
+## Requirements *(mandatory)*
+>>>>>>> Stashed changes
+=======
+## Requirements *(mandatory)*
+>>>>>>> Stashed changes
+=======
+## Requirements *(mandatory)*
+>>>>>>> Stashed changes
+=======
+## Requirements *(mandatory)*
+>>>>>>> Stashed changes
 
 <!--
   ACTION REQUIRED: The content in this section represents placeholders.
   Fill them out with the right functional requirements.
 -->
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <h3>Functional Requirements</h3>
+=======
+### Functional Requirements
+>>>>>>> Stashed changes
+=======
+### Functional Requirements
+>>>>>>> Stashed changes
+=======
+### Functional Requirements
+>>>>>>> Stashed changes
+=======
+### Functional Requirements
+>>>>>>> Stashed changes
 
 - **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
 - **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
@@ -95,19 +175,67 @@
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
 - **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <h3>Key Entities *(include if feature involves data)*</h3>
+=======
+### Key Entities *(include if feature involves data)*
+>>>>>>> Stashed changes
+=======
+### Key Entities *(include if feature involves data)*
+>>>>>>> Stashed changes
+=======
+### Key Entities *(include if feature involves data)*
+>>>>>>> Stashed changes
+=======
+### Key Entities *(include if feature involves data)*
+>>>>>>> Stashed changes
 
 - **[Entity 1]**: [What it represents, key attributes without implementation]
 - **[Entity 2]**: [What it represents, relationships to other entities]
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <h2>Success Criteria *(mandatory)*</h2>
+=======
+## Success Criteria *(mandatory)*
+>>>>>>> Stashed changes
+=======
+## Success Criteria *(mandatory)*
+>>>>>>> Stashed changes
+=======
+## Success Criteria *(mandatory)*
+>>>>>>> Stashed changes
+=======
+## Success Criteria *(mandatory)*
+>>>>>>> Stashed changes
 
 <!--
   ACTION REQUIRED: Define measurable success criteria.
   These must be technology-agnostic and measurable.
 -->
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <h3>Measurable Outcomes</h3>
+=======
+### Measurable Outcomes
+>>>>>>> Stashed changes
+=======
+### Measurable Outcomes
+>>>>>>> Stashed changes
+=======
+### Measurable Outcomes
+>>>>>>> Stashed changes
+=======
+### Measurable Outcomes
+>>>>>>> Stashed changes
 
 - **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
 - **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]

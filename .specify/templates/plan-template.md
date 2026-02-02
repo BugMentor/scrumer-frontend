@@ -33,9 +33,33 @@
 
 [Gates determined based on constitution file]
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <h2>Project Structure</h2>
 
 <h3>Documentation (this feature)</h3>
+=======
+## Project Structure
+
+### Documentation (this feature)
+>>>>>>> Stashed changes
+=======
+## Project Structure
+
+### Documentation (this feature)
+>>>>>>> Stashed changes
+=======
+## Project Structure
+
+### Documentation (this feature)
+>>>>>>> Stashed changes
+=======
+## Project Structure
+
+### Documentation (this feature)
+>>>>>>> Stashed changes
 
 ```text
 specs/[###-feature]/
@@ -47,7 +71,23 @@ specs/[###-feature]/
 └── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
 ```
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <h3>Source Code (repository root)</h3>
+=======
+### Source Code (repository root)
+>>>>>>> Stashed changes
+=======
+### Source Code (repository root)
+>>>>>>> Stashed changes
+=======
+### Source Code (repository root)
+>>>>>>> Stashed changes
+=======
+### Source Code (repository root)
+>>>>>>> Stashed changes
 <!--
   ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
   for this feature. Delete unused options and expand the chosen structure with
@@ -94,7 +134,23 @@ ios/ or android/
 **Structure Decision**: [Document the selected structure and reference the real
 directories captured above]
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <h2>Complexity Tracking</h2>
+=======
+## Complexity Tracking
+>>>>>>> Stashed changes
+=======
+## Complexity Tracking
+>>>>>>> Stashed changes
+=======
+## Complexity Tracking
+>>>>>>> Stashed changes
+=======
+## Complexity Tracking
+>>>>>>> Stashed changes
 
 > **Fill ONLY if Constitution Check has violations that must be justified**
 

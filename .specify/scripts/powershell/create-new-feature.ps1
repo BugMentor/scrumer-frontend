@@ -115,7 +115,23 @@ function Get-NextBranchNumber {
     $highestBranch = Get-HighestNumberFromBranches
 
     # Get highest number from ALL specs (not just matching short name)
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     $highestSpec = Get-HighestNumberFromSpecs -SpecsDir $specsDir
+=======
+    $highestSpec = Get-HighestNumberFromSpecs -SpecsDir $SpecsDir
+>>>>>>> Stashed changes
+=======
+    $highestSpec = Get-HighestNumberFromSpecs -SpecsDir $SpecsDir
+>>>>>>> Stashed changes
+=======
+    $highestSpec = Get-HighestNumberFromSpecs -SpecsDir $SpecsDir
+>>>>>>> Stashed changes
+=======
+    $highestSpec = Get-HighestNumberFromSpecs -SpecsDir $SpecsDir
+>>>>>>> Stashed changes
 
     # Take the maximum of both
     $maxNum = [Math]::Max($highestBranch, $highestSpec)
@@ -138,13 +154,45 @@ if (-not $fallbackRoot) {
 try {
     $repoRoot = git rev-parse --show-toplevel 2>$null
     if ($LASTEXITCODE -eq 0) {
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
         $hasGit = true
+=======
+        $hasGit = $true
+>>>>>>> Stashed changes
+=======
+        $hasGit = $true
+>>>>>>> Stashed changes
+=======
+        $hasGit = $true
+>>>>>>> Stashed changes
+=======
+        $hasGit = $true
+>>>>>>> Stashed changes
     } else {
         throw "Git not available"
     }
 } catch {
     $repoRoot = $fallbackRoot
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     $hasGit = false
+=======
+    $hasGit = $false
+>>>>>>> Stashed changes
+=======
+    $hasGit = $false
+>>>>>>> Stashed changes
+=======
+    $hasGit = $false
+>>>>>>> Stashed changes
+=======
+    $hasGit = $false
+>>>>>>> Stashed changes
 }
 
 Set-Location $repoRoot
@@ -152,6 +200,129 @@ Set-Location $repoRoot
 $specsDir = Join-Path $repoRoot 'specs'
 New-Item -ItemType Directory -Path $specsDir -Force | Out-Null
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+# Function to generate branch name with stop word filtering and length filtering
+function Get-BranchName {
+    param([string]$Description)
+    
+    # Common stop words to filter out
+    $stopWords = @(
+        'i', 'a', 'an', 'the', 'to', 'for', 'of', 'in', 'on', 'at', 'by', 'with', 'from',
+        'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had',
+        'do', 'does', 'did', 'will', 'would', 'should', 'could', 'can', 'may', 'might', 'must', 'shall',
+        'this', 'that', 'these', 'those', 'my', 'your', 'our', 'their',
+        'want', 'need', 'add', 'get', 'set'
+    )
+    
+    # Convert to lowercase and extract words (alphanumeric only)
+    $cleanName = $Description.ToLower() -replace '[^a-z0-9\s]', ' '
+    $words = $cleanName -split '\s+' | Where-Object { $_ }
+    
+    # Filter words: remove stop words and words shorter than 3 chars (unless they're uppercase acronyms in original)
+    $meaningfulWords = @()
+    foreach ($word in $words) {
+        # Skip stop words
+        if ($stopWords -contains $word) { continue }
+        
+        # Keep words that are length >= 3 OR appear as uppercase in original (likely acronyms)
+        if ($word.Length -ge 3) {
+            $meaningfulWords += $word
+        } elseif ($Description -match "\b$($word.ToUpper())\b") {
+            # Keep short words if they appear as uppercase in original (likely acronyms)
+            $meaningfulWords += $word
+        }
+    }
+    
+    # If we have meaningful words, use first 3-4 of them
+    if ($meaningfulWords.Count -gt 0) {
+        $maxWords = if ($meaningfulWords.Count -eq 4) { 4 } else { 3 }
+        $result = ($meaningfulWords | Select-Object -First $maxWords) -join '-'
+        return $result
+    } else {
+        # Fallback to original logic if no meaningful words found
+        $result = ConvertTo-CleanBranchName -Name $Description
+        $fallbackWords = ($result -split '-') | Where-Object { $_ } | Select-Object -First 3
+        return [string]::Join('-', $fallbackWords)
+    }
+}
+
+# Generate branch name
+if ($ShortName) {
+    # Use provided short name, just clean it up
+    $branchSuffix = ConvertTo-CleanBranchName -Name $ShortName
+} else {
+    # Generate from description with smart filtering
+    $branchSuffix = Get-BranchName -Description $featureDesc
+}
+
+# Determine branch number
+if ($Number -eq 0) {
+    if ($hasGit) {
+        # Check existing branches on remotes
+        $Number = Get-NextBranchNumber -SpecsDir $specsDir
+    } else {
+        # Fall back to local directory check
+        $Number = (Get-HighestNumberFromSpecs -SpecsDir $specsDir) + 1
+    }
+}
+
+$featureNum = ('{0:000}' -f $Number)
+$branchName = "$featureNum-$branchSuffix"
+
+# GitHub enforces a 244-byte limit on branch names
+# Validate and truncate if necessary
+$maxBranchLength = 244
+if ($branchName.Length -gt $maxBranchLength) {
+    # Calculate how much we need to trim from suffix
+    # Account for: feature number (3) + hyphen (1) = 4 chars
+    $maxSuffixLength = $maxBranchLength - 4
+    
+    # Truncate suffix
+    $truncatedSuffix = $branchSuffix.Substring(0, [Math]::Min($branchSuffix.Length, $maxSuffixLength))
+    # Remove trailing hyphen if truncation created one
+    $truncatedSuffix = $truncatedSuffix -replace '-$', ''
+    
+    $originalBranchName = $branchName
+    $branchName = "$featureNum-$truncatedSuffix"
+    
+    Write-Warning "[specify] Branch name exceeded GitHub's 244-byte limit"
+    Write-Warning "[specify] Original: $originalBranchName ($($originalBranchName.Length) bytes)"
+    Write-Warning "[specify] Truncated to: $branchName ($($branchName.Length) bytes)"
+}
+
+if ($hasGit) {
+    try {
+        git checkout -b $branchName | Out-Null
+    } catch {
+        Write-Warning "Failed to create git branch: $branchName"
+    }
+} else {
+    Write-Warning "[specify] Warning: Git repository not detected; skipped branch creation for $branchName"
+}
+
+$featureDir = Join-Path $specsDir $branchName
+New-Item -ItemType Directory -Path $featureDir -Force | Out-Null
+
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 $template = Join-Path $repoRoot '.specify/templates/spec-template.md'
 $specFile = Join-Path $featureDir 'spec.md'
 if (Test-Path $template) { 
