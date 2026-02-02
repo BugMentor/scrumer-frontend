@@ -138,13 +138,13 @@ if (-not $fallbackRoot) {
 try {
     $repoRoot = git rev-parse --show-toplevel 2>$null
     if ($LASTEXITCODE -eq 0) {
-        $hasGit = $true
+        $hasGit = true
     } else {
         throw "Git not available"
     }
 } catch {
     $repoRoot = $fallbackRoot
-    $hasGit = $false
+    $hasGit = false
 }
 
 Set-Location $repoRoot
