@@ -88,13 +88,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Building and maintaining enterprise-grade agile tools takes significant resources. Your support directly funds server costs, development hours, and the maintenance of our open-source infrastructure.
 
-### 🏆 Become a Sponsor (Open Collective)
-This is the best way to support the project if you want public recognition on our README and website.
-
-[![Open Collective](https://img.shields.io/opencollective/all/bugmentor-arg?label=Support%20Scrumer&logo=opencollective&color=blue)](https://opencollective.com/bugmentor-arg/projects/scrumer)
-
-[**Click here to Donate via Open Collective**](https://opencollective.com/bugmentor-arg/projects/scrumer/donate)
-
 ---
 
 ### ⚡ Direct Support (Wise)
